@@ -60,12 +60,12 @@
       <input type="submit" value="Submit">
     </form>
 
-    <form action="" method="get">
+    <form action="get_by_period.php" method="get">
       <h2>Select movies by time period</h2>
       <label for="start_date">Start date</label>
-      <input type="date" name="start_date" id="start_date"> <br>
+      <input type="date" name="start_date" id="start_date" required> <br>
       <label for="end_date">End date</label>
-      <input type="date" name="end_date" id="end_date">
+      <input type="date" name="end_date" id="end_date" required>
       <br>
       <input type="submit" value="Submit">
     </form>

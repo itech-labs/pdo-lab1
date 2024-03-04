@@ -24,6 +24,9 @@ GROUP BY film.ID_FILM;
 ### List of films for the specified time interval:
 
 ```sql
-SELECT name, date, country, director FROM film
-WHERE date BETWEEN "2017-11-09" AND "2023-08-24";
+SELECT name, date, country, director, GROUP_CONCAT(genre.title) AS genres FROM film
+JOIN film_genre ON film.ID_FILM = film_genre.FID_Film
+JOIN genre ON genre.ID_Genre = film_genre.FID_Genre
+WHERE date BETWEEN "2019-01-09" AND "2024-08-24"
+GROUP BY film.ID_FILM;
 ```
