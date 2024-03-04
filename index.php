@@ -12,7 +12,23 @@
         <h2>Select movies by genre</h2>
         <label for="genres">Genre</label> <br>
         <select name="genres" id="genres">
-          <option value="">--Please choose an option--</option>
+            <?php
+            include("connect.php");
+
+            $SELECT = "SELECT title FROM genre";
+            try {
+                $stmt = $dbh->prepare($SELECT);
+                $stmt->execute();
+
+                $res = $stmt->fetchAll();
+
+                foreach ($res as $row) {
+                    echo("<option value='$row[0]'>$row[0]</option>");
+                }
+            } catch (PDOException $ex) {
+                echo $ex->GetMessage();
+            }
+            ?>
         </select>
       </div>
         <input type="submit" value="Submit">
@@ -23,7 +39,22 @@
         <h2>Select movies by actor</h2>
         <label for="actors">Actor</label> <br>
         <select name="actors" id="actors">
-          <option value="">--Please choose an option--</option>
+            <?php
+            $SELECT = "SELECT name FROM actor";
+            try {
+                $stmt = $dbh->prepare($SELECT);
+                $stmt->execute();
+
+                $res = $stmt->fetchAll();
+
+                foreach ($res as $row) {
+                    echo("<option value='$row[0]'>$row[0]</option>");
+                }
+                $dbh = null;
+            } catch (PDOException $ex) {
+                echo $ex->GetMessage();
+            }
+            ?>
         </select>
       </div>
       <input type="submit" value="Submit">
