@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="./main.css">
 </head>
 <body>
-    <form action="" method="get">
+    <form action="get_by_genre.php" method="get">
       <div class="form-info">
         <h2>Select movies by genre</h2>
-        <label for="genres">Genre</label> <br>
-        <select name="genres" id="genres">
+        <label for="genre">Genre</label> <br>
+        <select name="genre" id="genre">
             <?php
             include("connect.php");
 
