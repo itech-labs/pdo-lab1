@@ -1,16 +1,19 @@
 <?php
 include("connect.php");
 
-$genre_title = $_GET["genre"];
+$actor_name = $_GET["actor"];
 
-$SELECT = "SELECT name, date, country, director, title FROM film
-JOIN film_genre ON ID_FILM = FID_Film
-JOIN genre ON FID_Genre = ID_Genre
-WHERE title = :genre_title";
+$SELECT = "SELECT  film.name, film.date, film.country, film.director, GROUP_CONCAT(genre.title) AS genres FROM film
+JOIN film_actor ON film.ID_FILM = film_actor.FID_Film
+JOIN actor ON film_actor.FID_Actor = actor.ID_Actor
+JOIN film_genre ON film.ID_FILM = film_genre.FID_Film
+JOIN genre ON film_genre.FID_Genre = genre.ID_Genre 
+WHERE actor.name = :actor_name
+GROUP BY film.ID_FILM";
 
 try {
     $stmt = $dbh->prepare($SELECT);
-    $stmt->bindValue(":genre_title", $genre_title);
+    $stmt->bindValue(":actor_name", $actor_name);
     $stmt->execute();
 
     $res = $stmt->fetchAll();
@@ -24,15 +27,15 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo($genre_title)?></title>
+    <title><?php echo($actor_name)?></title>
     <link rel="stylesheet" href="./get_by_genre.css">
 </head>
 <body>
-    <h2>Movies of the <?php echo($genre_title)?> genre</h2>
+    <h2>Movies starring <?php echo($actor_name)?></h2>
 
     <?php
     if (count($res) == 0) {
-        echo("<p>No movies found for the $genre_title genre.</p>");
+        echo("<p>No movies found starring $actor_name.</p>");
     } else {
     ?>
         <table>

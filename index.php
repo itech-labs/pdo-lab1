@@ -34,11 +34,11 @@
         <input type="submit" value="Submit">
     </form>
 
-    <form action="" method="get">
+    <form action="get_by_actor.php" method="get">
       <div class="form-info">
         <h2>Select movies by actor</h2>
-        <label for="actors">Actor</label> <br>
-        <select name="actors" id="actors">
+        <label for="actor">Actor</label> <br>
+        <select name="actor" id="actor">
             <?php
             $SELECT = "SELECT name FROM actor";
             try {
