@@ -6,7 +6,8 @@
 SELECT name, date, country, director, title FROM film
 JOIN film_genre ON ID_FILM = FID_Film
 JOIN genre ON FID_Genre = ID_Genre
-WHERE title = "Action";
+WHERE title = "Action"
+ORDER BY film.name;
 ```
 
 ### List of films with the selected actor:
@@ -28,5 +29,6 @@ SELECT name, date, country, director, GROUP_CONCAT(genre.title) AS genres FROM f
 JOIN film_genre ON film.ID_FILM = film_genre.FID_Film
 JOIN genre ON genre.ID_Genre = film_genre.FID_Genre
 WHERE date BETWEEN "2019-01-09" AND "2024-08-24"
-GROUP BY film.ID_FILM;
+GROUP BY film.ID_FILM
+ORDER BY date;
 ```

@@ -9,7 +9,8 @@ JOIN actor ON film_actor.FID_Actor = actor.ID_Actor
 JOIN film_genre ON film.ID_FILM = film_genre.FID_Film
 JOIN genre ON film_genre.FID_Genre = genre.ID_Genre 
 WHERE actor.name = :actor_name
-GROUP BY film.ID_FILM";
+GROUP BY film.ID_FILM
+ORDER BY film.name";
 
 try {
     $stmt = $dbh->prepare($SELECT);

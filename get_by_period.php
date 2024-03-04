@@ -13,7 +13,8 @@ $SELECT = "SELECT name, date, country, director, GROUP_CONCAT(genre.title) AS ge
 JOIN film_genre ON film.ID_FILM = film_genre.FID_Film
 JOIN genre ON genre.ID_Genre = film_genre.FID_Genre
 WHERE date BETWEEN :start_date AND :end_date
-GROUP BY film.ID_FILM";
+GROUP BY film.ID_FILM
+ORDER BY date";
 
 try {
     $stmt = $dbh->prepare($SELECT);
